@@ -18,5 +18,17 @@ module.exports = {
     compress: true,
     port: 9000,
     index: "index.html"
+  },
+  module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+      },
+      {
+        test: /\.css$/i,
+        use: ["css-loader"],
+      }
+    ],
   }
 };
