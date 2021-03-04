@@ -16,3 +16,17 @@ main{
     overflow-y: auto;
     background-color: lightcoral;
 }
+
+.boards-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.board-tile {
+    padding:50px;   
+    color: white;
+    background-size: cover;
+    cursor: pointer;
+}

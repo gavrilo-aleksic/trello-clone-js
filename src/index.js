@@ -4,6 +4,7 @@ import { MainComponent } from './modules/main/main.component';
 import style from '../main.css';
 
 const initApp = () => {
+    
     const APP_MAIN_CONTAINERS = {
         HEADER: document.querySelector('#header'),
         MAIN: document.querySelector('#main'),
@@ -13,7 +14,6 @@ const initApp = () => {
     const header = new HeaderComponent(APP_MAIN_CONTAINERS.HEADER);
     const footer = new FooterComponent(APP_MAIN_CONTAINERS.FOOTER);
     const main = new MainComponent(APP_MAIN_CONTAINERS.MAIN);
-
 }
 
 const setStyle = () => {
