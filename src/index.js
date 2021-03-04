@@ -1,15 +1,19 @@
-import { HeaderComponent} from './modules/header/components/header/header.component';
+import { HeaderComponent} from './modules/header/header.component';
+import { FooterComponent } from './modules/footer/footer.component';
+import { MainComponent } from './modules/main/main.component';
 import style from '../main.css';
 
 const initApp = () => {
     const APP_MAIN_CONTAINERS = {
         HEADER: document.querySelector('#header'),
-        SIDE_NAV: document.querySelector('#sideNav'),
-        MAIN_CONTENT: document.querySelector('#mainContent'),
+        MAIN: document.querySelector('#main'),
         FOOTER: document.querySelector('#footer')
     }
     setStyle();
     const header = new HeaderComponent(APP_MAIN_CONTAINERS.HEADER);
+    const footer = new FooterComponent(APP_MAIN_CONTAINERS.FOOTER);
+    const main = new MainComponent(APP_MAIN_CONTAINERS.MAIN);
+
 }
 
 const setStyle = () => {
