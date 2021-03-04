@@ -20,15 +20,27 @@ export class TrelloService {
       window.location.href = TRELLO_ENDPOINTS.authorize();
   }
 
+  getUserInfo(token=this.token){
+    return parseResponse(
+      fetch(TRELLO_ENDPOINTS.getUserInfo(token))
+    );  
+  }
+
   getBoards() {
     return parseResponse(
       fetch(TRELLO_ENDPOINTS.getBoards(this.username, this.token))
     );
   }
 
-  getUserInfo(token){
+  getBoardCards(boardId){
     return parseResponse(
-      fetch(TRELLO_ENDPOINTS.getUserInfo(token))
+      fetch(TRELLO_ENDPOINTS.getBoardCards(boardId, this.token))
+    );  
+  }
+
+  getBoardLists(boardId){
+    return parseResponse(
+      fetch(TRELLO_ENDPOINTS.getBoardLists(boardId, this.token))
     );  
   }
 }

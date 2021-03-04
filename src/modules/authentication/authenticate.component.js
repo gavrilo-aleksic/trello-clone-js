@@ -5,18 +5,21 @@ import { AuthenticationService} from '../../core/services/authentication.service
 import htmlContent from "./authentication.component.html";
 
 export class AuthenticationComponent extends BaseComponent {
-  constructor(container) {
-    super(container, htmlContent);
+  constructor({container}) {
+    super({container, htmlContent});
+    this.authenticationService = new AuthenticationService();
     this.init();
   }
 
   init() {
-    this.authenticationService = new AuthenticationService();
     const submitButton = this.container.querySelector(".login");
 
-    new ButtonComponent(submitButton, {
-      label: "Login",
-      onClick: (e) => this.login(),
+    new ButtonComponent({
+      container: submitButton,
+      props:{
+        label: "Login",
+        onClick: (e) => this.login(),
+      }
     });
 
     

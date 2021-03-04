@@ -2,8 +2,9 @@ import { BaseComponent } from '../../../core/components/base.component';
 import htmlContent from "./button.component.html";
 
 export class ButtonComponent extends BaseComponent{
-    constructor(container, props) {
-        super(container,htmlContent);
+    constructor({container, props}) {
+        super({container,htmlContent});
+        console.log({container, props})
         this.init(props);
     }
 

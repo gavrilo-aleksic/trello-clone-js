@@ -2,8 +2,8 @@ import { BaseComponent } from '../../../core/components/base.component';
 import htmlContent from "./input.component.html";
 
 export class InputComponent extends BaseComponent {
-  constructor(container) {
-    super(container, htmlContent);
+  constructor({container}) {
+    super({container, htmlContent});
     this.init();
   }
 

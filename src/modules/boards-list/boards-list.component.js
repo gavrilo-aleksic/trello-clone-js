@@ -1,10 +1,13 @@
+import { APP_LOCATIONS } from '../../config/constants';
 import { TrelloService } from '../../core/api/trello.service';
 import { BaseComponent } from '../../core/components/base.component';
+import { BoardComponent } from '../board/board.component';
+import { MainComponent } from '../main/main.component';
 import htmlContent from './boards-list.component.html'
 
 export class BoardsListComponent extends BaseComponent{
-    constructor(container) {
-        super(container, htmlContent);
+    constructor({container}) {
+        super({container, htmlContent});
         this.init();
     }
 
@@ -32,6 +35,9 @@ export class BoardsListComponent extends BaseComponent{
         } else if(backgroundImage) {
             boardTile.style.backgroundImage = `url(${backgroundImage})`;
         }
+        boardTile.addEventListener('click', () => {
+            MainComponent.setPage(BoardComponent, `boards/${board.id}`, {board});
+        })
 
         return boardTile;
     }

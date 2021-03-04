@@ -11,9 +11,9 @@ const initApp = () => {
         FOOTER: document.querySelector('#footer')
     }
     setStyle();
-    const header = new HeaderComponent(APP_MAIN_CONTAINERS.HEADER);
-    const footer = new FooterComponent(APP_MAIN_CONTAINERS.FOOTER);
-    const main = new MainComponent(APP_MAIN_CONTAINERS.MAIN);
+    const header = new HeaderComponent({container:APP_MAIN_CONTAINERS.HEADER});
+    const footer = new FooterComponent({container:APP_MAIN_CONTAINERS.FOOTER});
+    const main = new MainComponent({container:APP_MAIN_CONTAINERS.MAIN});
 }
 
 const setStyle = () => {

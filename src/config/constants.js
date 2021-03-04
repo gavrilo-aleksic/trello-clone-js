@@ -1,5 +1,10 @@
-export const APP_CONSTANTS = {
+export const APP_CONFIG = {
     TRELLO_API_KEY: '8b6bb8d1a8dc19191c3b8b35f6547886',
     TRELLO_TOKEN: '88568f61385eaeec08b62df70637ad7a4a67ca9179191fe7e910265a6b8e8a47',
     TRELLO_SECRET: 'ad1af283205052bbad10da32773fdbf34f7f352c3224ca45975fbbb7d3fc4c43'
+}
+
+export const APP_LOCATIONS = {
+    BOARDS:'boards',
+    AUTH: 'auth'
 }
