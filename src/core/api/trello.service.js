@@ -1,4 +1,4 @@
-import { StorageService, STORAGE_KEYS } from '../services/storage.service';
+import { StorageService, STORAGE_KEYS } from "../services/storage.service";
 import { TRELLO_ENDPOINTS } from "./api-endpoints";
 import { parseResponse } from "./api.utils";
 
@@ -10,20 +10,18 @@ export class TrelloService {
 
   init() {
     const user = this.storageService.get(STORAGE_KEYS.USER);
-    if(user) {
+    if (user) {
       this.token = user.token;
       this.username = user.username;
     }
   }
 
   authorize() {
-      window.location.href = TRELLO_ENDPOINTS.authorize();
+    window.location.href = TRELLO_ENDPOINTS.authorize();
   }
 
-  getUserInfo(token=this.token){
-    return parseResponse(
-      fetch(TRELLO_ENDPOINTS.getUserInfo(token))
-    );  
+  getUserInfo(token = this.token) {
+    return parseResponse(fetch(TRELLO_ENDPOINTS.getUserInfo(token)));
   }
 
   getBoards() {
@@ -32,15 +30,19 @@ export class TrelloService {
     );
   }
 
-  getBoardCards(boardId){
+  getBoardCards(boardId) {
     return parseResponse(
       fetch(TRELLO_ENDPOINTS.getBoardCards(boardId, this.token))
-    );  
+    );
   }
 
-  getBoardLists(boardId){
+  getBoardCard(cardId) {
     return parseResponse(
-      fetch(TRELLO_ENDPOINTS.getBoardLists(boardId, this.token))
-    );  
+      fetch(TRELLO_ENDPOINTS.getBoardCard(cardId, this.token))
+    );
+  }
+
+  generateAvatarUrl(url, size=30) {
+    return `${url}/${size}.png`;
   }
 }

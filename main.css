@@ -13,11 +13,11 @@ body {
     flex-direction: column;
 }
 header{
-    height: 10vh;
+    height: 5vh;
     background-color: #026aa7;
 }
 main{
-    height: 90vh;
+    height: 95vh;
     overflow-y: auto;
 }
 

@@ -1,3 +1,4 @@
+import {IList} from './list';
 export interface IBoard {
     id: string;
     name: string;
@@ -5,9 +6,9 @@ export interface IBoard {
     idMemberCreator: string;
     closed: boolean;
     url: string;
+    lists: IList[];
     prefs: {
         backgroundColor: string;
         backgroundImage: string;
-
     }
 }

@@ -4,14 +4,15 @@ import htmlContent from "./button.component.html";
 export class ButtonComponent extends BaseComponent{
     constructor({container, props}) {
         super({container,htmlContent});
+        this.onClick = props.onClick || (() => {});
+        this.label = props.label || '';
         this.init(props);
     }
 
-    init(props) {
-        const {label, onClick} = props;
+    init() {
         this.container.addEventListener('click', (e) => {
-            onClick(e);
+            this.onClick(e);
         });
-        this.container.querySelector(".button-text").innerHTML = label;
+        this.container.querySelector(".button-text").innerHTML = this.label;
     }
 }
