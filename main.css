@@ -3,18 +3,22 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+body {
+    background-color: #f4f5f7;
+}
+
 .container{
     display: flex;
     flex-direction: column;
 }
-header,footer{
+header{
     height: 10vh;
-    background-color: lightblue;
+    background-color: #026aa7;
 }
 main{
-    height: 80vh;
+    height: 90vh;
     overflow-y: auto;
-    background-color: lightcoral;
 }
 
 .boards-list {
@@ -37,7 +41,7 @@ main{
     display: grid;
     grid-auto-flow: column;
     overflow-x: auto;
-    height: 80vh;
+    height: 90vh;
     padding: 20px;
     gap: 20px;
 
@@ -56,7 +60,7 @@ main{
 }
 .list-content{
     overflow-y: auto;
-    height: calc(75vh - 40px);
+    height: calc(85vh - 40px);
     display: grid;
     gap: 10px;
     align-content: flex-start;
@@ -72,4 +76,36 @@ main{
 }
 .card-name{
     word-break: break-word;
+}
+
+.modal-wrapper {
+    display: none;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0,0,0,0.64)
+   
+}
+
+.modal{
+    width: 70%;
+    height: 70%;
+    background-color: white;
+    position: relative;
+
+    
+}
+.modal-wrapper.is-open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-close{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
 }

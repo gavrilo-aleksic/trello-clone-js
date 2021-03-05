@@ -12,7 +12,6 @@ const initApp = () => {
     }
     setStyle();
     const header = new HeaderComponent({container:APP_MAIN_CONTAINERS.HEADER});
-    const footer = new FooterComponent({container:APP_MAIN_CONTAINERS.FOOTER});
     const main = new MainComponent({container:APP_MAIN_CONTAINERS.MAIN});
 }
 

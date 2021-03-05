@@ -5,7 +5,6 @@ import { ListComponent } from "./components/list/list.component";
 
 export class BoardComponent extends BaseComponent {
   constructor({container, props}) {
-    console.log(props);
     super({container, htmlContent});
     this.trelloService = new TrelloService();
     this.init(props.board);
@@ -14,9 +13,9 @@ export class BoardComponent extends BaseComponent {
   async init(board) {
     const { backgroundColor, backgroundImage } = board.prefs;
     if(backgroundColor) {
-        this.container.style.backgroundColor = backgroundColor;
+        document.body.style.backgroundColor = backgroundColor;
     } else if(backgroundImage) {
-        this.container.style.backgroundImage = `url(${backgroundImage})`;
+        document.body.style.backgroundImage = `url(${backgroundImage})`;
     }
     this.listsWrapper = this.container.querySelector(".lists-wrapper");
     this.cards = await this.trelloService.getBoardCards(board.id);
