@@ -25,7 +25,7 @@ export class ModalComponent {
       })
     }
     modalContent = ModalComponent.modalWrapper.querySelector(".modal-content");
-    modalContent.appendChild(content.cloneNode(true));
+    modalContent.appendChild(content);
     ModalComponent.modalWrapper.classList.add("is-open");
   }
 

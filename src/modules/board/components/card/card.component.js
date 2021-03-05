@@ -3,6 +3,7 @@ import { ModalComponent } from '../../../shared/modal/modal.component';
 import { CardDetailsComponent } from '../card-details/card-details.component';
 import { TrelloService } from '../../../../core/api/trello.service';
 import htmlContent from './card.component.html';
+import { CardModel } from '../../models/card.model';
 
 export class CardComponent extends BaseComponent {
     constructor({container, props}) {
@@ -16,7 +17,7 @@ export class CardComponent extends BaseComponent {
        this.cardNameElement.innerText = this.card.name;
        this.container.addEventListener('click', async (e) => {
            const cardDetails = await this.trelloService.getBoardCard(this.card.id);
-           const cardDetailsElement = new CardDetailsComponent({props: {card: cardDetails}});
+           const cardDetailsElement = new CardDetailsComponent({props: {card: new CardModel(cardDetails)}});
            ModalComponent.show({content: cardDetailsElement.container});
        })
    }

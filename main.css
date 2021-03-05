@@ -1,111 +1,153 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
 }
 
 body {
-    background-color: #f4f5f7;
+  background-color: #f4f5f7;
 }
 
-.container{
-    display: flex;
-    flex-direction: column;
+.container {
+  display: flex;
+  flex-direction: column;
 }
-header{
-    height: 5vh;
-    background-color: #026aa7;
+header {
+  height: 5vh;
+  background-color: #026aa7;
 }
-main{
-    height: 95vh;
-    overflow-y: auto;
+main {
+  height: 95vh;
+  overflow-y: auto;
 }
 
+.button-wrapper {
+  border-radius: 3px;
+  border: none;
+  padding: 0 12px;
+  height: 32px;
+  width: fit-content;
+  cursor: pointer;
+  background-color: hsla(0,0%,100%,.2);
+}
+.button-wrapper:hover{
+    background-color: hsla(0,0%,100%,.32) 
+}
+.button-text {
+  font-size: 14px;
+  line-height: 32px;
+  color: white;
+}
+.board-header {
+  height: 10%;
+}
 .boards-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
 }
 
 .board-tile {
-    padding:50px;   
-    color: white;
-    background-size: cover;
-    cursor: pointer;
+  padding: 50px;
+  color: white;
+  background-size: cover;
+  cursor: pointer;
 }
-.main-wrapper{
-    background-size: cover;
+.main-wrapper {
+  background-size: cover;
 }
-.lists-wrapper{
-    display: grid;
-    grid-auto-flow: column;
-    overflow-x: auto;
-    height: 90vh;
-    padding: 20px;
-    gap: 20px;
-
+.lists-wrapper {
+  display: grid;
+  grid-auto-flow: column;
+  overflow-x: auto;
+  height: 90vh;
+  padding: 20px;
+  gap: 20px;
 }
-.list-wrapper{
-    width: 300px;
-    height: 100%;
-    background-color: white;
-    border-radius: 5px;
-   
+.list-wrapper {
+  width: 300px;
+  height: 100%;
+  background-color: white;
+  border-radius: 5px;
 }
-.list-name{
-    padding: 20px;
-    background-color: lightgray;
-    height: 5vh;
+.list-name {
+  padding: 20px;
+  background-color: lightgray;
+  height: 5vh;
 }
-.list-content{
-    overflow-y: auto;
-    height: calc(85vh - 40px);
-    display: grid;
-    gap: 10px;
-    align-content: flex-start;
-    
+.list-content {
+  overflow-y: auto;
+  height: calc(85vh - 40px);
+  display: grid;
+  gap: 10px;
+  align-content: flex-start;
 }
 
-.card-wrapper{
-    padding: 20px;
-    border: 1px solid black;
-    margin: 0 10px;
-    cursor: pointer;
-    
+.card-wrapper {
+  padding: 20px;
+  border: 1px solid black;
+  margin: 0 10px;
+  cursor: pointer;
 }
-.card-name{
-    word-break: break-word;
+.card-name {
+  word-break: break-word;
 }
 
 .modal-wrapper {
-    display: none;
-    background-color: white;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100%;
-    background-color: rgba(0,0,0,0.64)
-   
+  display: none;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.64);
 }
 
-.modal{
-    width: 70%;
-    height: 70%;
-    background-color: white;
-    position: relative;
-
-    
+.modal {
+  width: 70%;
+  height: 70%;
+  background-color: white;
+  position: relative;
+  padding: 40px;
 }
 .modal-wrapper.is-open {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.modal-close{
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    cursor: pointer;
+.modal-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.input-wrapper {
+
+}
+
+.input-text {
+  background: transparent;
+  border-radius: 3px;
+  box-shadow: none;
+  font-size: 20px;
+  font-weight: 600;
+  height: 32px;
+  line-height: 24px;
+  margin: -4px -8px;
+  min-height: 24px;
+  padding: 4px 8px;
+  resize: none;
+  width: 100%;
+  border: unset;
+}
+
+.input-text:focus {
+  background-color: #fff;
+  box-shadow: inset 0 0 0 2px #0079bf;
+  border: unset;
+  outline: 0;
 }
