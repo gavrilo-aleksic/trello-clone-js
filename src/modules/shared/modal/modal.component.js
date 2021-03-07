@@ -30,7 +30,7 @@ export class ModalComponent {
     ModalComponent.modalWrapper.classList.add("is-open");
   }
 
-  static close({onClose = () => {}, }) {
+  static close({onClose = () => {}, } = {}) {
     const modalContent = ModalComponent.modalWrapper.querySelector(".modal-content");
     modalContent.innerHTML = '';
     ModalComponent.modalWrapper.classList.remove("is-open");

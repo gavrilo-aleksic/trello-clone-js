@@ -5,7 +5,7 @@ import htmlContent from "./button.component.html";
 export class ButtonComponent extends BaseComponent {
   constructor({ container, props, }) {
     super({ container, htmlContent, });
-    this.onClick = props.onClick || (() => {});
+    this.onClicked = props.onClicked || (() => {});
     this.label = props.label || "";
     this.color = props.color || COLORS.GRAY;
     this.init(props);
@@ -23,7 +23,7 @@ export class ButtonComponent extends BaseComponent {
 
   setEvents() {
     this.container.addEventListener("click", (e) => {
-      this.onClick(e);
+      this.onClicked(e);
     });
   }
 

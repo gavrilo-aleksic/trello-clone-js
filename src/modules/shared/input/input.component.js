@@ -16,6 +16,8 @@ export class InputComponent extends BaseComponent {
       this.input.addEventListener('input', (e) => {
         this.input.value = this.input.value.replace(/\n/g, '');
       });
+    } else {
+      this.input.classList.add('input-text-multiline')
     }
     this.setValue();
 

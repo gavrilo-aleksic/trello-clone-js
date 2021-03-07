@@ -48,8 +48,19 @@ export class TrelloService {
 
   updateCardField(cardId, fieldName, value) {
     return parseResponse(
-      fetch(TRELLO_ENDPOINTS.updateCardField(cardId, fieldName, value, this.token), {
-        method: "PUT",
+      fetch(
+        TRELLO_ENDPOINTS.updateCardField(cardId, fieldName, value, this.token),
+        {
+          method: "PUT",
+        }
+      )
+    );
+  }
+
+  createBoard(boardName) {
+    return parseResponse(
+      fetch(TRELLO_ENDPOINTS.createBoard(boardName, this.token), {
+        method: "POST",
       })
     );
   }

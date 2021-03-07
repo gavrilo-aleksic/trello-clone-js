@@ -1,13 +1,20 @@
-import { APP_LOCATIONS } from '../../config/constants';
+import { store } from '../../index';
 import { TrelloService } from '../../core/api/trello.service';
 import { BaseComponent } from '../../core/components/base.component';
+import { AuthenticationService } from '../../core/services/authentication.service';
+import { STORE_KEYS } from '../../core/store/actions';
 import { BoardComponent } from '../board/board.component';
 import { MainComponent } from '../main/main.component';
+import { ModalComponent } from '../shared/modal/modal.component';
 import htmlContent from './boards-list.component.html'
+import { NewBoardComponent } from './components/new-board/new-board.component';
+import { getStoreValue } from '../../core/store/util';
 
 export class BoardsListComponent extends BaseComponent{
   constructor({container, }) {
     super({container, htmlContent, });
+    this.authenticationService = new AuthenticationService();
+    this.setSubscribers();
     this.init();
   }
 
@@ -24,6 +31,13 @@ export class BoardsListComponent extends BaseComponent{
       const boardTile = this.createBoardTile(board);
       this.boardsListContainer.appendChild(boardTile)
     }
+    const boardTile = this.createBoardTile({
+      name: 'Create new board',
+      prefs: {
+        backgroundColor: 'rgba(9,30,66,.04)',
+      },
+    });
+    this.boardsListContainer.appendChild(boardTile)
   }
 
   createBoardTile(board) {
@@ -36,10 +50,28 @@ export class BoardsListComponent extends BaseComponent{
     } else if (backgroundImage) {
       boardTile.style.backgroundImage = `url(${backgroundImage})`;
     }
-    boardTile.addEventListener('click', () => {
-      MainComponent.setPage(BoardComponent, `boards/${board.id}`, {board, });
+    boardTile.addEventListener('click', async () => {
+      if (board.id) {
+        MainComponent.setPage(BoardComponent, `boards/${board.id}`, {board, });
+      } else {
+        ModalComponent.show({
+          content: new NewBoardComponent({
+            props: {
+              userFullName: (await this.authenticationService.getUser()).fullName,
+            },
+          }).container,
+        })
+      }
     })
 
     return boardTile;
+  }
+
+  
+  setSubscribers() {
+    store.subscribe(() => {
+      const newBoard = getStoreValue(STORE_KEYS.ACTIVE_BOARD);
+      this.reset();
+    });
   }
 }

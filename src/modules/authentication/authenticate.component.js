@@ -20,7 +20,7 @@ export class AuthenticationComponent extends BaseComponent {
       props: {
         label: "Login",
         color: COLORS.PRIMARY,
-        onClick: (e) => this.login(),
+        onClicked: (e) => this.login(),
       },
     });
 

@@ -16,7 +16,7 @@ export class HeaderComponent extends BaseComponent {
       container: logoutWrapper,
       props: {
         label: "logout",
-        onClick: () => this.logout(),
+        onClicked: () => this.logout(),
       },
     });
   }

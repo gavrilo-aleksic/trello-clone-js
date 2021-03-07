@@ -7,7 +7,7 @@ export class CardLabelComponent extends BaseComponent {
     super({ container, htmlContent, });
     this.text = props.text;
     this.color = props.color || COLORS.PRIMARY;
-    this.onClick = props.onClick || (() => {});
+    this.onClicked = props.onClicked || (() => {});
     this.init();
   }
 
