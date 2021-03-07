@@ -8,8 +8,8 @@ import { ACTIONS } from '../../../../core/store/actions';
 import htmlContent from "./card-details.component.html";
 
 export class CardDetailsComponent extends BaseComponent {
-  constructor({ container, props }) {
-    super({ container, htmlContent });
+  constructor({ container, props, }) {
+    super({ container, htmlContent, });
     this.trelloService = new TrelloService();
     this.card = new CardModel(props.card);
     this.init();
@@ -45,10 +45,10 @@ export class CardDetailsComponent extends BaseComponent {
       props: {
         value: this.card.name,
         onValueChanged: (newValue, oldValue) => {
-            this.trelloService.updateCardName(this.card.id, newValue).then(r => {
-              this.card.name = r.name;
-              store.dispatch({ type: ACTIONS.CARD_CHANGED, data: this.card });
-            })
+          this.trelloService.updateCardName(this.card.id, newValue).then(r => {
+            this.card.name = r.name;
+            store.dispatch({ type: ACTIONS.CARD_CHANGED, data: this.card, });
+          })
         },
       },
     });
@@ -72,7 +72,7 @@ export class CardDetailsComponent extends BaseComponent {
   setLabels() {
     for (let label of this.card.labels) {
       const labelElement = new CardLabelComponent({
-        props: { text: label.name, color: label.color },
+        props: { text: label.name, color: label.color, },
       });
       this.cardDetailsLabelsElement.appendChild(labelElement.container);
     }

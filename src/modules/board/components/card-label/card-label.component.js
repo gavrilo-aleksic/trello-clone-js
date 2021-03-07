@@ -3,8 +3,8 @@ import { BaseComponent } from "../../../../core/components/base.component";
 import htmlContent from "./card-label.component.html";
 
 export class CardLabelComponent extends BaseComponent {
-  constructor({ container, props }) {
-    super({ container, htmlContent });
+  constructor({ container, props, }) {
+    super({ container, htmlContent, });
     this.text = props.text;
     this.color = props.color || COLORS.PRIMARY;
     this.onClick = props.onClick || (() => {});

@@ -5,7 +5,7 @@ export class ModalComponent {
     this.wrapper = document.querySelector(".modal-wrapper");
   }
 
-  static show({ content, onClose = () => {} }) {
+  static show({ content, onClose = () => {}, }) {
     let modalContent;
     this.onClose = onClose;
     if (!ModalComponent.modalWrapper) {
@@ -17,11 +17,11 @@ export class ModalComponent {
       );
       ModalComponent.modalWrapper.addEventListener("click", (e) => {
         if (e.target === ModalComponent.modalWrapper) {
-          ModalComponent.close({onClose: this.onClose});
+          ModalComponent.close({onClose: this.onClose, });
         }
       });
-      ModalComponent.modalWrapper.querySelector('.modal-close').addEventListener('click',()=>{
-        ModalComponent.close({onClose: this.onClose});
+      ModalComponent.modalWrapper.querySelector('.modal-close').addEventListener('click', () => {
+        ModalComponent.close({onClose: this.onClose, });
       })
     }
     modalContent = ModalComponent.modalWrapper.querySelector(".modal-content");
@@ -30,7 +30,7 @@ export class ModalComponent {
     ModalComponent.modalWrapper.classList.add("is-open");
   }
 
-  static close({onClose = () => {}}) {
+  static close({onClose = () => {}, }) {
     const modalContent = ModalComponent.modalWrapper.querySelector(".modal-content");
     modalContent.innerHTML = '';
     ModalComponent.modalWrapper.classList.remove("is-open");

@@ -35,15 +35,15 @@ export class AuthenticationService {
 
   async saveUser(token) {
     try {
-      const {username, id} = await this.trelloService.getUserInfo(token);
+      const {username, id, } = await this.trelloService.getUserInfo(token);
       const newUser = {
-          username,
-          id,
-          token
+        username,
+        id,
+        token,
       }
       this.storageService.set(STORAGE_KEYS.USER, newUser);
       return newUser;
-    } catch(e) {
+    } catch (e) {
       /**TODO: Show invalid token error */
       return null;
     }

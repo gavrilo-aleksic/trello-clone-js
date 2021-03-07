@@ -8,8 +8,8 @@ import htmlContent from "./card.component.html";
 import { getStoreValue } from "../../../../core/store/util";
 
 export class CardComponent extends BaseComponent {
-  constructor({ container, props }) {
-    super({ container, htmlContent });
+  constructor({ container, props, }) {
+    super({ container, htmlContent, });
     this.card = props.card;
     this.trelloService = new TrelloService();
     this.init();
@@ -29,7 +29,7 @@ export class CardComponent extends BaseComponent {
       ModalComponent.show({
         content: cardDetailsElement.container,
         onClose: () => {
-          store.dispatch({ type: ACTIONS.CARD_CHANGED, data: cardDetails });
+          store.dispatch({ type: ACTIONS.CARD_CHANGED, data: cardDetails, });
         },
       });
     });

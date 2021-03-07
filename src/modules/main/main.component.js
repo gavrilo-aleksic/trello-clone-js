@@ -7,8 +7,8 @@ import  RouterService  from '../../core/services/router.service';
 import { APP_LOCATIONS } from '../../config/constants';
 
 export class MainComponent extends BaseComponent {
-  constructor({container}) {
-    super({container, htmlContent});
+  constructor({container, }) {
+    super({container, htmlContent, });
     this.authenticationService = new AuthenticationService();
     this.init();
   }
@@ -24,7 +24,7 @@ export class MainComponent extends BaseComponent {
   }
 
   static setPage(PageComponent, hash, props = {}) {
-    new PageComponent({container:MainComponent.mainWrapper, props});
+    new PageComponent({container: MainComponent.mainWrapper, props, });
     RouterService.setRoute(hash);
   }
 }

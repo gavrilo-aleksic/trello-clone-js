@@ -4,8 +4,8 @@ import { ButtonComponent } from "../shared/button/button.component";
 import htmlContent from "./header.component.html";
 
 export class HeaderComponent extends BaseComponent {
-  constructor({ container }) {
-    super({ container, htmlContent });
+  constructor({ container, }) {
+    super({ container, htmlContent, });
     this.authenticationService = new AuthenticationService();
     this.init();
   }

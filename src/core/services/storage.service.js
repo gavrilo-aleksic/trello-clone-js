@@ -1,5 +1,5 @@
 export const STORAGE_KEYS = {
-    USER: 'user'
+  USER: 'user',
 }
 
 export class StorageService {

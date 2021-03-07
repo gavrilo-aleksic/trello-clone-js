@@ -5,8 +5,8 @@ import { ListComponent } from "./components/list/list.component";
 import { ButtonComponent } from '../shared/button/button.component';
 
 export class BoardComponent extends BaseComponent {
-  constructor({ container, props }) {
-    super({ container, htmlContent });
+  constructor({ container, props, }) {
+    super({ container, htmlContent, });
     this.trelloService = new TrelloService();
     this.board = props.board;
     this.init();
@@ -22,12 +22,12 @@ export class BoardComponent extends BaseComponent {
   
   setHeader() {
     this.headerElement = this.container.querySelector('.board-header');
-    const boardNameElement = new ButtonComponent({props: {label: this.board.name}});
+    const boardNameElement = new ButtonComponent({props: {label: this.board.name, }, });
     this.headerElement.appendChild(boardNameElement.container);
   }
 
   setBackground() {
-    const { backgroundColor, backgroundImage } = this.board.prefs;
+    const { backgroundColor, backgroundImage, } = this.board.prefs;
     if (backgroundColor) {
       document.body.style.backgroundColor = backgroundColor;
     } else if (backgroundImage) {
