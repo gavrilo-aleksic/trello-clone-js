@@ -1,4 +1,5 @@
 import { BaseComponent } from '../../../../core/components/base.component';
+import { store } from '../../../../core/store/reducer';
 import { ModalComponent } from '../../../shared/modal/modal.component';
 import { CardModel } from '../../models/card.model';
 import { CardDetailsComponent } from '../card-details/card-details.component';
@@ -10,7 +11,7 @@ export class ListComponent extends BaseComponent {
         super({container, htmlContent});
         this.list = props.list
         this.cards = props.cards
-        this.init()
+        this.init();
     }
     init(){
         this.nameElement = this.container.querySelector('.list-name')
@@ -22,11 +23,11 @@ export class ListComponent extends BaseComponent {
         });
         this.createNewCardButton = this.container.querySelector('.list-new-card');
         this.createNewCardButton.addEventListener('click', () => {
-            const newCard = new CardDetailsComponent({props: {card: new CardModel({
+            const newCardElement = new CardDetailsComponent({props: {card: new CardModel({
                 desc: 'Description',
                 name: 'Title'
             })}});
-            ModalComponent.show({content: newCard.container})
+            ModalComponent.show({content: newCardElement.container});
         })
     }    
 }

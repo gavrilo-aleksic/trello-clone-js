@@ -17,14 +17,15 @@ export class InputComponent extends BaseComponent {
   }
 
   setEvents(el) {
-    console.log(this.input);
     this.input.addEventListener('change', (e) => {
-      console.log(this.input.value);
+      this.onValueChanged(this.input.value, this.value);
+      this.value = this.input.value;
     })
   }
 
   setValue(value = this.value) {
     this.input.value = value;
+    this.value = value;
   }
 
   getValue(){

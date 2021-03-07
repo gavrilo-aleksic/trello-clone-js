@@ -1,6 +1,7 @@
+import { createStore } from 'redux'
 import { HeaderComponent} from './modules/header/header.component';
-import { FooterComponent } from './modules/footer/footer.component';
 import { MainComponent } from './modules/main/main.component';
+import { counterReducer } from './core/store/reducer';
 import style from '../main.css';
 
 const initApp = () => {
@@ -23,3 +24,5 @@ const setStyle = () => {
 
 
 initApp();
+
+export let store = createStore(counterReducer);

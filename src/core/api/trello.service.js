@@ -42,7 +42,15 @@ export class TrelloService {
     );
   }
 
-  generateAvatarUrl(url, size=30) {
+  generateAvatarUrl(url, size = 30) {
     return `${url}/${size}.png`;
+  }
+
+  updateCardName(cardId, name) {
+    return parseResponse(
+      fetch(TRELLO_ENDPOINTS.updateCardName(cardId, name, this.token), {
+        method: "PUT",
+      })
+    );
   }
 }

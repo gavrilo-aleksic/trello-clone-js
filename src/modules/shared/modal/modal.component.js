@@ -5,8 +5,9 @@ export class ModalComponent {
     this.wrapper = document.querySelector(".modal-wrapper");
   }
 
-  static show({ content }) {
+  static show({ content, onClose = () => {} }) {
     let modalContent;
+    this.onClose = onClose;
     if (!ModalComponent.modalWrapper) {
       const modalWrapper = document.createElement("div");
       document.body.appendChild(modalWrapper);
@@ -16,22 +17,23 @@ export class ModalComponent {
       );
       ModalComponent.modalWrapper.addEventListener("click", (e) => {
         if (e.target === ModalComponent.modalWrapper) {
-          ModalComponent.hide();
+          ModalComponent.close({onClose: this.onClose});
         }
       });
       ModalComponent.modalWrapper.querySelector('.modal-close').addEventListener('click',()=>{
-        ModalComponent.hide();
-
+        ModalComponent.close({onClose: this.onClose});
       })
     }
     modalContent = ModalComponent.modalWrapper.querySelector(".modal-content");
+    modalContent.innerHTML = '';
     modalContent.appendChild(content);
     ModalComponent.modalWrapper.classList.add("is-open");
   }
 
-  static hide() {
+  static close({onClose = () => {}}) {
     const modalContent = ModalComponent.modalWrapper.querySelector(".modal-content");
     modalContent.innerHTML = '';
     ModalComponent.modalWrapper.classList.remove("is-open");
+    onClose();
   }
 }
