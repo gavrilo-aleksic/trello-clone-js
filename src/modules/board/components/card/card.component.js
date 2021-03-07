@@ -4,8 +4,8 @@ import { CardDetailsComponent } from "../card-details/card-details.component";
 import { TrelloService } from "../../../../core/api/trello.service";
 import { ACTIONS, STORE_KEYS } from "../../../../core/store/actions";
 import { store } from "../../../..";
-import htmlContent from "./card.component.html";
 import { getStoreValue } from "../../../../core/store/util";
+import htmlContent from "./card.component.html";
 
 export class CardComponent extends BaseComponent {
   constructor({ container, props, }) {

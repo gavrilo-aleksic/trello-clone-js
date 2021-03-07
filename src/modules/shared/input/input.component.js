@@ -5,15 +5,22 @@ export class InputComponent extends BaseComponent {
   constructor({container, props, }) {
     super({container, htmlContent, });
     this.value = props.value || '';
+    this.multiLine = props.multiLine || false;
     this.onValueChanged = props.onValueChanged || (() => {});
     this.init();
   }
 
   init() {
-
     this.input = this.container.querySelector('.input-text');
+    if (!this.multiLine) {
+      this.input.addEventListener('input', (e) => {
+        this.input.value = this.input.value.replace(/\n/g, '');
+      });
+    }
     this.setValue();
+
     this.setEvents();
+
   }
 
   setEvents(el) {

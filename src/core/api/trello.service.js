@@ -46,9 +46,9 @@ export class TrelloService {
     return `${url}/${size}.png`;
   }
 
-  updateCardName(cardId, name) {
+  updateCardField(cardId, fieldName, value) {
     return parseResponse(
-      fetch(TRELLO_ENDPOINTS.updateCardName(cardId, name, this.token), {
+      fetch(TRELLO_ENDPOINTS.updateCardField(cardId, fieldName, value, this.token), {
         method: "PUT",
       })
     );

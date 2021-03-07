@@ -14,5 +14,12 @@ export interface IBoardCard {
         id: string;
         idBoard: string;
         name: string;
+    }[];
+    actions: {
+        date: Date;
+        type: 'commentCard',
+        data: {
+            text: string;
+        }
     }[]
 }

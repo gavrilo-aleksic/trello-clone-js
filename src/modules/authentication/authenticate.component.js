@@ -3,6 +3,7 @@ import { ButtonComponent } from "../shared/button/button.component";
 import { AuthenticationService} from '../../core/services/authentication.service';
 
 import htmlContent from "./authentication.component.html";
+import { COLORS } from '../../config/colors';
 
 export class AuthenticationComponent extends BaseComponent {
   constructor({container, }) {
@@ -18,6 +19,7 @@ export class AuthenticationComponent extends BaseComponent {
       container: submitButton,
       props: {
         label: "Login",
+        color: COLORS.PRIMARY,
         onClick: (e) => this.login(),
       },
     });

@@ -1,6 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+
+const env = process.env.NODE_ENV;
 
 module.exports = {
   entry: './src/index.js',
@@ -11,15 +14,18 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './index.html'
+      template: './index.html',
     }),
-    new ESLintPlugin()
+    new ESLintPlugin(),
+    new Dotenv({
+      path: `./.env.${env === "prod" ? "prod" : "dev"}`,
+    })
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 9000,
-    index: "index.html"
+    index: "index.html",
   },
   module: {
     rules: [

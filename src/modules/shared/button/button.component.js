@@ -12,8 +12,13 @@ export class ButtonComponent extends BaseComponent {
   }
 
   init() {
+    this.setType();
     this.setEvents();
     this.setText();
+  }
+
+  setType() {
+    this.container.style.backgroundColor = this.color;
   }
 
   setEvents() {
