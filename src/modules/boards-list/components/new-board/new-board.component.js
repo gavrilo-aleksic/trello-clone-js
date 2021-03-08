@@ -34,7 +34,7 @@ export class NewBoardComponent extends BaseComponent {
             .createBoard(this.boardName)
             .then((createdBoard) => {
               store.dispatch({
-                type: ACTIONS.CARD_CHANGED,
+                type: ACTIONS.BOARD_CREATED,
                 data: createdBoard,
               });
               ModalComponent.close();

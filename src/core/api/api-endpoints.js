@@ -15,6 +15,8 @@ export const TRELLO_ENDPOINTS = {
     `${TRELLO_API_BASE_URL}/boards/${boardId}/cards?key=${TRELLO_API_KEY}&token=${token}`,
   getBoardCard: (cardId, token) =>
     `${TRELLO_API_BASE_URL}/cards/${cardId}?actions=commentCard&fields=all&members=true&key=${TRELLO_API_KEY}&token=${token}`,
-  updateCardField: (cardId, fieldName, value, token) =>
-    `${TRELLO_API_BASE_URL}/cards/${cardId}?${fieldName}=${value}&key=${TRELLO_API_KEY}&token=${token}`,
+  createCard: (queryParams, token) =>
+    `${TRELLO_API_BASE_URL}/cards/?${queryParams}&key=${TRELLO_API_KEY}&token=${token}`,
+  updateCard: (cardId, queryParams, token) =>
+    `${TRELLO_API_BASE_URL}/cards/${cardId}?${queryParams}&key=${TRELLO_API_KEY}&token=${token}`,
 };

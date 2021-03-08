@@ -4,6 +4,7 @@ export interface IBoardCard {
     closed: boolean;
     desc: string;
     idMembers: string[];
+    pos: number;
     members: {
         fullName: string;id: string;
         avatarUrl: string;

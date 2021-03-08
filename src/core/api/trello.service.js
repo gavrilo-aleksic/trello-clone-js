@@ -1,3 +1,4 @@
+import { createQueryParams } from '../../utils/request.util';
 import { StorageService, STORAGE_KEYS } from "../services/storage.service";
 import { TRELLO_ENDPOINTS } from "./api-endpoints";
 import { parseResponse } from "./api.utils";
@@ -46,22 +47,29 @@ export class TrelloService {
     return `${url}/${size}.png`;
   }
 
-  updateCardField(cardId, fieldName, value) {
-    return parseResponse(
-      fetch(
-        TRELLO_ENDPOINTS.updateCardField(cardId, fieldName, value, this.token),
-        {
-          method: "PUT",
-        }
-      )
-    );
-  }
-
   createBoard(boardName) {
     return parseResponse(
       fetch(TRELLO_ENDPOINTS.createBoard(boardName, this.token), {
         method: "POST",
       })
     );
+  }
+
+  updateCard(cardId, body) {
+    const query = createQueryParams(body);
+    return parseResponse(
+      fetch(TRELLO_ENDPOINTS.updateCard(cardId, query, this.token), {
+        method: "PUT",
+      })
+    );
+  }
+
+  createCard(listId, body) {
+    const query = createQueryParams(body);
+    return parseResponse(
+      fetch(TRELLO_ENDPOINTS.createCard(listId, query, this.token), {
+        method: "POST",
+      })
+    );    
   }
 }

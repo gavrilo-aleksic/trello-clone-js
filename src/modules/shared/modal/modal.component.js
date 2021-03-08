@@ -5,9 +5,10 @@ export class ModalComponent {
     this.wrapper = document.querySelector(".modal-wrapper");
   }
 
-  static show({ content, onClose = () => {}, }) {
+  static show({ content, onClose = () => {}, closeOnOutsideClick = true, }) {
     let modalContent;
     this.onClose = onClose;
+    this.closeOnOutsideClick = closeOnOutsideClick;
     if (!ModalComponent.modalWrapper) {
       const modalWrapper = document.createElement("div");
       document.body.appendChild(modalWrapper);
@@ -16,7 +17,7 @@ export class ModalComponent {
         ".modal-wrapper"
       );
       ModalComponent.modalWrapper.addEventListener("click", (e) => {
-        if (e.target === ModalComponent.modalWrapper) {
+        if (e.target === ModalComponent.modalWrapper && this.closeOnOutsideClick) {
           ModalComponent.close({onClose: this.onClose, });
         }
       });

@@ -41,12 +41,14 @@ main {
 }
 .board-header {
   height: 10%;
+  display:flex;
 }
 .boards-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 20px;
+  background-color: #f4f5f7;
 }
 
 .board-tile {

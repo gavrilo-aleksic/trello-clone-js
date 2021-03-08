@@ -1,11 +1,17 @@
 import { ACTIONS, STORE_KEYS } from "./actions";
 import { updateStore } from './util';
 
-export const counterReducer = (state = {}, action) => {
+const initialState = {
+  activeBoard: {},
+  activeCard: {},
+}
+export const counterReducer = (state = initialState, action) => {
   switch (action.type) {
     case ACTIONS.CARD_CHANGED:
-      return updateStore(state, { [STORE_KEYS.ACTIVE_CARD]: action.data, });
+      return updateStore(state, action, STORE_KEYS.ACTIVE_CARD );
     case ACTIONS.BOARD_CREATED:
-      return updateStore(state, {[STORE_KEYS.ACTIVE_BOARD]: action.data, })
+      return updateStore(state, action, STORE_KEYS.ACTIVE_BOARD);
+    default:
+      return state;
   }
 };

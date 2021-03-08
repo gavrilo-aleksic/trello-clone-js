@@ -2,7 +2,10 @@ import htmlContent from "./board.component.html";
 import { BaseComponent } from "../../core/components/base.component";
 import { TrelloService } from "../../core/api/trello.service";
 import { ListComponent } from "./components/list/list.component";
-import { ButtonComponent } from '../shared/button/button.component';
+import { ButtonComponent } from "../shared/button/button.component";
+import { MainComponent } from "../main/main.component";
+import { APP_LOCATIONS } from "../../config/constants";
+import { BoardsListComponent } from '../boards-list/boards-list.component';
 
 export class BoardComponent extends BaseComponent {
   constructor({ container, props, }) {
@@ -19,11 +22,24 @@ export class BoardComponent extends BaseComponent {
     await this.getCards();
     this.setLists();
   }
-  
+
   setHeader() {
-    this.headerElement = this.container.querySelector('.board-header');
-    const boardNameElement = new ButtonComponent({props: {label: this.board.name, }, });
-    this.headerElement.appendChild(boardNameElement.container);
+    this.headerElement = this.container.querySelector(".board-header");
+    this.headerElement.appendChild(
+      new ButtonComponent({ props: { label: this.board.name, }, }).container
+    );
+    this.headerElement.appendChild(
+      new ButtonComponent(
+        {
+          props: {
+            label: "Back",
+            onClicked: () => {
+              MainComponent.setPage(BoardsListComponent, APP_LOCATIONS.BOARDS);
+            },
+          },
+        }
+      ).container
+    );
   }
 
   setBackground() {

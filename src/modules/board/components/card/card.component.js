@@ -2,7 +2,7 @@ import { BaseComponent } from "../../../../core/components/base.component";
 import { ModalComponent } from "../../../shared/modal/modal.component";
 import { CardDetailsComponent } from "../card-details/card-details.component";
 import { TrelloService } from "../../../../core/api/trello.service";
-import { ACTIONS, STORE_KEYS } from "../../../../core/store/actions";
+import { STORE_KEYS } from "../../../../core/store/actions";
 import { store } from "../../../..";
 import { getStoreValue } from "../../../../core/store/util";
 import htmlContent from "./card.component.html";
@@ -18,6 +18,7 @@ export class CardComponent extends BaseComponent {
 
   init() {
     this.cardNameElement = this.container.querySelector(".card-name");
+    this.container.card = this.card;
     this.cardNameElement.innerText = this.card.name;
     this.container.addEventListener("click", async (e) => {
       const cardDetails = await this.trelloService.getBoardCard(this.card.id);
@@ -28,9 +29,6 @@ export class CardComponent extends BaseComponent {
       });
       ModalComponent.show({
         content: cardDetailsElement.container,
-        onClose: () => {
-          store.dispatch({ type: ACTIONS.CARD_CHANGED, data: cardDetails, });
-        },
       });
     });
   }

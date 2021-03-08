@@ -113,7 +113,7 @@ export class CardDetailsComponent extends BaseComponent {
 
   updateCard(fieldName, newValue) {
     this.trelloService
-      .updateCardField(this.card.id, fieldName, newValue)
+      .updateCard(this.card.id, {[fieldName]: newValue, })
       .then((r) => {
         this.card[fieldName] = newValue;
         store.dispatch({ type: ACTIONS.CARD_CHANGED, data: this.card, });

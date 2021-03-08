@@ -2,13 +2,13 @@ import { store } from '../../index';
 import { TrelloService } from '../../core/api/trello.service';
 import { BaseComponent } from '../../core/components/base.component';
 import { AuthenticationService } from '../../core/services/authentication.service';
-import { STORE_KEYS } from '../../core/store/actions';
+import { ACTIONS, STORE_KEYS } from '../../core/store/actions';
 import { BoardComponent } from '../board/board.component';
 import { MainComponent } from '../main/main.component';
 import { ModalComponent } from '../shared/modal/modal.component';
-import htmlContent from './boards-list.component.html'
 import { NewBoardComponent } from './components/new-board/new-board.component';
-import { getStoreValue } from '../../core/store/util';
+import { getLastAction, getStoreValue } from '../../core/store/util';
+import htmlContent from './boards-list.component.html'
 
 export class BoardsListComponent extends BaseComponent{
   constructor({container, }) {
@@ -21,7 +21,6 @@ export class BoardsListComponent extends BaseComponent{
   async init() {
     this.boardsListContainer = document.querySelector(".boards-list");
     this.fetchBoards();
-
   }
 
   async fetchBoards() {
@@ -60,6 +59,7 @@ export class BoardsListComponent extends BaseComponent{
               userFullName: (await this.authenticationService.getUser()).fullName,
             },
           }).container,
+          closeOnOutsideClick: false,
         })
       }
     })
@@ -70,8 +70,9 @@ export class BoardsListComponent extends BaseComponent{
   
   setSubscribers() {
     store.subscribe(() => {
-      const newBoard = getStoreValue(STORE_KEYS.ACTIVE_BOARD);
-      this.reset();
+      if (getLastAction() === ACTIONS.BOARD_CREATED) {
+        this.reset();
+      }
     });
   }
 }
