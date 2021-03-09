@@ -85,7 +85,7 @@ export class CardDetailsComponent extends BaseComponent {
     }
     const addMemberButton = document.createElement("div");
     addMemberButton.classList.add("card-details-members-avatar", 'list-opener');
-    addMemberButton.innerHTML = '+';
+    addMemberButton.textContent = '+';
     addMemberButton.addEventListener('click', () => {
       const newMemberList = new FloatingListComponent({});
     });

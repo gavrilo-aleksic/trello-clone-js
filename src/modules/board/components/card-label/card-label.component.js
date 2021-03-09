@@ -9,6 +9,7 @@ export class CardLabelComponent extends BaseComponent {
     this.color = props.color || COLORS.PRIMARY;
     this.onClicked = props.onClicked || (() => {});
     this.init();
+    console.log(this.color)
   }
 
   init() {
@@ -21,23 +22,23 @@ export class CardLabelComponent extends BaseComponent {
   }
 
   setColor(color = this.color) {
-    let appColor;
-    switch (color) {
-      case "blue":
-        appColor = COLORS.PRIMARY;
-        break;
-      case "purple":
-        appColor = COLORS.PURPLE;
-        break;
-      case "pink":
-        appColor = COLORS.PINK;
-        break;
-      default:
-        appColor = COLORS.PRIMARY;
-        break;
-    }
+    // let appColor;
+    // switch (color) {
+    //   case "blue":
+    //     appColor = COLORS.PRIMARY;
+    //     break;
+    //   case "purple":
+    //     appColor = COLORS.PURPLE;
+    //     break;
+    //   case "pink":
+    //     appColor = COLORS.PINK;
+    //     break;
+    //   default:
+    //     appColor = COLORS.PRIMARY;
+    //     break;
+    // }
 
-    this.cardLabelElement.style.color = appColor;
+    this.cardLabelElement.style.backgroundColor = COLORS[this.color.toUpperCase()] || COLORS.GRAY ;
   }
 
   setText(text = this.text) {

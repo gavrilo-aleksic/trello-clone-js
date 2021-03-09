@@ -13,6 +13,7 @@ export class InputComponent extends BaseComponent {
   init() {
     this.input = this.container.querySelector('.input-text');
     if (!this.multiLine) {
+
       this.input.addEventListener('input', (e) => {
         this.input.value = this.input.value.replace(/\n/g, '');
       });
