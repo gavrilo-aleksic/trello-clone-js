@@ -64,10 +64,11 @@ export class TrelloService {
     );
   }
 
-  createCard(listId, body) {
+  createCard(body) {
     const query = createQueryParams(body);
+    console.log(query, body);
     return parseResponse(
-      fetch(TRELLO_ENDPOINTS.createCard(listId, query, this.token), {
+      fetch(TRELLO_ENDPOINTS.createCard(query, this.token), {
         method: "POST",
       })
     );    

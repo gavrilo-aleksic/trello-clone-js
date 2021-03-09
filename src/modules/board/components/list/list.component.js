@@ -4,8 +4,11 @@ import { ModalComponent } from "../../../shared/modal/modal.component";
 import { CardModel } from "../../models/card.model";
 import { CardDetailsComponent } from "../card-details/card-details.component";
 import { CardComponent } from "../card/card.component";
-import htmlContent from "./list.component.html";
 import { TrelloService } from "../../../../core/api/trello.service";
+import { store } from '../../../../index';
+import { STORE_KEYS } from '../../../../core/store/actions';
+import { getStoreValue } from '../../../../core/store/util';
+import htmlContent from "./list.component.html";
 
 export class ListComponent extends BaseComponent {
   constructor({ container, props, }) {
@@ -13,7 +16,20 @@ export class ListComponent extends BaseComponent {
     this.trelloService = new TrelloService();
     this.list = props.list;
     this.cards = props.cards;
+    this.initSubscribers();
     this.init();
+  }
+
+  initSubscribers() {
+    store.subscribe(() => {
+      const newCard = getStoreValue(STORE_KEYS.NEW_CARD);
+      if (newCard.idList === this.list.id) {
+        this.cards.push(newCard);
+        this.reset();
+      }
+    }
+    
+    )
   }
 
   init() {
@@ -33,6 +49,7 @@ export class ListComponent extends BaseComponent {
           card: new CardModel({
             desc: "Description",
             name: "Title",
+            idList: this.list.id,
           }),
         },
       });

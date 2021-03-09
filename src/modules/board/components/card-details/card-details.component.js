@@ -6,6 +6,7 @@ import { CardModel } from "../../models/card.model";
 import { store } from "../../../..";
 import { ACTIONS } from "../../../../core/store/actions";
 import htmlContent from "./card-details.component.html";
+import { FloatingListComponent } from '../../../shared/floating-list/floating-list.component';
 
 export class CardDetailsComponent extends BaseComponent {
   constructor({ container, props, }) {
@@ -82,6 +83,13 @@ export class CardDetailsComponent extends BaseComponent {
       );
       this.cardDetailsMemebersElement.appendChild(memberAvatarElement);
     }
+    const addMemberButton = document.createElement("div");
+    addMemberButton.classList.add("card-details-members-avatar", 'list-opener');
+    addMemberButton.innerHTML = '+';
+    addMemberButton.addEventListener('click', () => {
+      const newMemberList = new FloatingListComponent({});
+    });
+    this.cardDetailsMemebersElement.appendChild(addMemberButton);
   }
 
   setLabels() {
@@ -112,11 +120,20 @@ export class CardDetailsComponent extends BaseComponent {
   }
 
   updateCard(fieldName, newValue) {
-    this.trelloService
-      .updateCard(this.card.id, {[fieldName]: newValue, })
-      .then((r) => {
-        this.card[fieldName] = newValue;
-        store.dispatch({ type: ACTIONS.CARD_CHANGED, data: this.card, });
-      });
+    if (this.card. id) {
+      this.trelloService
+        .updateCard(this.card.id, {[fieldName]: newValue, })
+        .then((r) => {
+          this.card[fieldName] = newValue;
+          store.dispatch({ type: ACTIONS.CARD_CHANGED, data: this.card, });
+        });
+    } else {
+      this.trelloService
+        .createCard({idList: this.card.idList, [fieldName]: newValue, })
+        .then((r) => {
+          this.card[fieldName] = newValue;
+          store.dispatch({ type: ACTIONS.CARD_CREATED, data: r, });
+        });
+    }
   }
 }
