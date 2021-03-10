@@ -163,7 +163,7 @@ main {
   height: 70%;
   background-color: #f4f5f7;
   position: relative;
-  padding: 2rem;
+  padding: 2rem 1rem 2rem 2rem;
   border-radius: var(--radius);
 }
 .modal-wrapper.is-open {
@@ -323,6 +323,10 @@ main {
 .card-details-list-name {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.card-details-activity-date {
+  color: #5e6c84;
 }
 
 button:focus {
