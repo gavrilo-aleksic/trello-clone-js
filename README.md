@@ -9,7 +9,7 @@
 `TRELLO_SECRET = xxx`\
 `TRELLO_API_BASE_URL=https://api.trello.com/1`
 
-Application is hosted live on Firebase on `https://trello-clone-gavrilo.web.app/`
+Application is hosted live on [Firebase](https://trello-clone-gavrilo.web.app/)
 
 ### Currently supported features:
 
