@@ -10,3 +10,13 @@
 `TRELLO_API_BASE_URL=https://api.trello.com/1`
 
 Application is hosted live on Firebase on `https://trello-clone-gavrilo.web.app/`
+
+### Currently supported features:
+
+* Authentication
+* View Active Boards
+* Create Board
+* View Board Lists and Cards
+* Edit Card
+* Add Card
+* Reorder Cards inside List
