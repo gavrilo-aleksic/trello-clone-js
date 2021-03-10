@@ -1,7 +1,6 @@
-import { createQueryParams } from '../../utils/request.util';
+import { createQueryParams, parseResponse } from '../../utils/api.util';
 import { StorageService, STORAGE_KEYS } from "../services/storage.service";
 import { TRELLO_ENDPOINTS } from "./api-endpoints";
-import { parseResponse } from "./api.utils";
 
 export class TrelloService {
   constructor() {
@@ -66,11 +65,18 @@ export class TrelloService {
 
   createCard(body) {
     const query = createQueryParams(body);
-    console.log(query, body);
     return parseResponse(
       fetch(TRELLO_ENDPOINTS.createCard(query, this.token), {
         method: "POST",
       })
     );    
+  }
+
+  createComment(cardId, commentText) {
+    return parseResponse(
+      fetch(TRELLO_ENDPOINTS.createComment(cardId, commentText, this.token), {
+        method: "POST",
+      })
+    );   
   }
 }

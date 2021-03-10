@@ -19,4 +19,6 @@ export const TRELLO_ENDPOINTS = {
     `${TRELLO_API_BASE_URL}/cards/?${queryParams}&key=${TRELLO_API_KEY}&token=${token}`,
   updateCard: (cardId, queryParams, token) =>
     `${TRELLO_API_BASE_URL}/cards/${cardId}?${queryParams}&key=${TRELLO_API_KEY}&token=${token}`,
+  createComment: (cardId, commentText, token) =>
+    `${TRELLO_API_BASE_URL}/cards/${cardId}/actions/comments?text=${commentText}&key=${TRELLO_API_KEY}&token=${token}`,
 };

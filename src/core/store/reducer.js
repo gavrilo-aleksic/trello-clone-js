@@ -13,6 +13,10 @@ export const counterReducer = (state = initialState, action) => {
       return updateStore(state, action, STORE_KEYS.ACTIVE_BOARD);
     case ACTIONS.CARD_CREATED:
       return updateStore(state, action, STORE_KEYS.NEW_CARD);
+    case ACTIONS.USER_LOGIN:
+      return updateStore(state, action, STORE_KEYS.USER_LOGIN);
+    case ACTIONS.USER_LOGOUT:
+      return updateStore(state, action, STORE_KEYS.USER_LOGOUT);
     default:
       return state;
   }

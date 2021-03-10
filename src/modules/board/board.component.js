@@ -26,9 +26,6 @@ export class BoardComponent extends BaseComponent {
   setHeader() {
     this.headerElement = this.container.querySelector(".board-header");
     this.headerElement.appendChild(
-      new ButtonComponent({ props: { label: this.board.name, }, }).container
-    );
-    this.headerElement.appendChild(
       new ButtonComponent(
         {
           props: {
@@ -39,6 +36,9 @@ export class BoardComponent extends BaseComponent {
           },
         }
       ).container
+    );
+    this.headerElement.appendChild(
+      new ButtonComponent({ props: { label: this.board.name, }, }).container
     );
   }
 

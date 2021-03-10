@@ -23,9 +23,9 @@ export class ListComponent extends BaseComponent {
   initSubscribers() {
     store.subscribe(() => {
       const newCard = getStoreValue(STORE_KEYS.NEW_CARD);
-      if (newCard.idList === this.list.id) {
+      if (newCard && newCard.idList === this.list.id) {
         this.cards.push(newCard);
-        this.reset();
+        this.addCard(newCard);
       }
     }
     
@@ -37,8 +37,7 @@ export class ListComponent extends BaseComponent {
     this.nameElement.innerText = this.list.name;
     this.listContent = this.container.querySelector(".list-content");
     this.cards.forEach((card) => {
-      const cardElement = new CardComponent({ props: { card, }, });
-      this.listContent.appendChild(cardElement.container);
+      this.addCard(card);
     });
     this.listContent.list = this.list;
     this.listContent.cards = this.cards;
@@ -51,6 +50,7 @@ export class ListComponent extends BaseComponent {
             name: "Title",
             idList: this.list.id,
           }),
+          list: this.list,
         },
       });
       ModalComponent.show({ content: newCardElement.container, });
@@ -62,29 +62,32 @@ export class ListComponent extends BaseComponent {
       sort: true,
       handle: ".card-wrapper",
       onSort: (e) => {
-        console.log("SORT", e);
         const toList = e.to;
         const fromList = e.from;
         const card = e.item.card;
 
-        const previousPos = toList.cards[e.oldIndex - 1]
-          ? toList.cards[e.oldIndex - 1].pos
-          : toList.list.id === fromList.list.id ? toList.cards[e.oldIndex].pos : card.pos;
-        const nextPos = toList.cards[e.oldIndex + 1]
-          ? toList.cards[e.oldIndex + 1].pos
-          : toList.list.id === fromList.list.id ? toList.cards[e.oldIndex].pos : card.pos;
-
-        const newPos = (nextPos + previousPos) / 2;
-        console.log("Changing POS", {currentPos: card.pos, newIndex: e.newIndex, oldIndex: e.oldIndex, previousPos, nextPos, newPos, toList: toList.cards, });
-        // this.trelloService
-        //   .updateCard(card.id, {
-        //     pos: newPos,
-        //     idList: toList.id !== fromList.list.id ? toList.list.id : undefined,
-        //   })
-        //   .then((e) => {
-        //     card.pos = newPos;
-        //   });
+        let previousPos = toList.cards[e.newIndex]
+          ? toList.cards[e.newIndex].pos 
+          : card.pos;
+        
+        if (toList.list.id !== fromList.list.id && toList.cards.length > 0) {
+          previousPos = toList.cards[e.newIndex - 1].pos;
+        }
+        const newPos = e.newIndex > e.oldIndex ? previousPos + 1 : previousPos - 1;
+        this.trelloService
+          .updateCard(card.id, {
+            pos: newPos,
+            idList: toList.id !== fromList.list.id ? toList.list.id : undefined,
+          })
+          .then((e) => {
+            card.pos = newPos;
+          });
       },
     });
+  }
+
+  addCard(card) {
+    const cardElement = new CardComponent({ props: { card, list: this.list, }, });
+    this.listContent.appendChild(cardElement.container);
   }
 }

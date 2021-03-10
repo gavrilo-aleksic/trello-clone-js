@@ -8,6 +8,7 @@ export class ButtonComponent extends BaseComponent {
     this.onClicked = props.onClicked || (() => {});
     this.label = props.label || "";
     this.color = props.color || COLORS.GRAY;
+    this.disabled = props.disabled || false;
     this.init(props);
   }
 
@@ -15,6 +16,7 @@ export class ButtonComponent extends BaseComponent {
     this.setType();
     this.setEvents();
     this.setText();
+    this.setDisabled(this.disabled);
   }
 
   setType() {
@@ -30,5 +32,16 @@ export class ButtonComponent extends BaseComponent {
   setText(text = this.label) {
     this.buttonTextElement = this.container.querySelector(".button-text");
     this.buttonTextElement.innerHTML = text;
+  }
+
+  setDisabled(disabled) {
+    this.container.disabled = disabled;
+    this.disabled = disabled;
+    if (disabled) {
+      this.container.style.backgroundColor = COLORS.GRAY;
+    } else {
+      this.container.style.backgroundColor = this.color;
+
+    }
   }
 }

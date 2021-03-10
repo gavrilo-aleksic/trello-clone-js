@@ -18,11 +18,11 @@ export class ModalComponent {
       );
       ModalComponent.modalWrapper.addEventListener("click", (e) => {
         if (e.target === ModalComponent.modalWrapper && this.closeOnOutsideClick) {
-          ModalComponent.close({onClose: this.onClose, });
+          ModalComponent.close({onClose: this.onClose, button: false, });
         }
       });
       ModalComponent.modalWrapper.querySelector('.modal-close').addEventListener('click', () => {
-        ModalComponent.close({onClose: this.onClose, });
+        ModalComponent.close({onClose: this.onClose, button: true, });
       })
     }
     modalContent = ModalComponent.modalWrapper.querySelector(".modal-content");
@@ -31,10 +31,10 @@ export class ModalComponent {
     ModalComponent.modalWrapper.classList.add("is-open");
   }
 
-  static close({onClose = () => {}, } = {}) {
+  static close({onClose = () => {}, button = false, } = {} ) {
     const modalContent = ModalComponent.modalWrapper.querySelector(".modal-content");
     modalContent.innerHTML = '';
     ModalComponent.modalWrapper.classList.remove("is-open");
-    onClose();
+    onClose(button);
   }
 }

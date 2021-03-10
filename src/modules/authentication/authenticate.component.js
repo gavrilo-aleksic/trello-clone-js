@@ -13,7 +13,7 @@ export class AuthenticationComponent extends BaseComponent {
   }
 
   init() {
-    const submitButton = this.container.querySelector(".login");
+    const submitButton = this.container.querySelector(".authentication-wrapper-login");
 
     new ButtonComponent({
       container: submitButton,

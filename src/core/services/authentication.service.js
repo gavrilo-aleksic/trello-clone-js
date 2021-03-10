@@ -1,4 +1,6 @@
+import { store } from '../../index';
 import { TrelloService } from "../api/trello.service";
+import { ACTIONS } from '../store/actions';
 import { StorageService, STORAGE_KEYS } from "./storage.service";
 
 export class AuthenticationService {
@@ -13,6 +15,11 @@ export class AuthenticationService {
 
   logout() {
     this.storageService.delete(STORAGE_KEYS.USER);
+    store.dispatch({type: ACTIONS.USER_LOGOUT, data: null, })
+  }
+
+  isAuthenticated() {
+    return this.storageService.get(STORAGE_KEYS.USER);
   }
 
   async getUser() {
@@ -46,7 +53,6 @@ export class AuthenticationService {
       return newUser;
     } catch (e) {
       console.error("ERROR FETCHING USER", e);
-      /**TODO: Show invalid token error */
       return null;
     }
   }

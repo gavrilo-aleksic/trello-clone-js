@@ -5,6 +5,8 @@ import { AuthenticationService } from "../../core/services/authentication.servic
 import { AuthenticationComponent } from "../authentication/authenticate.component";
 import  RouterService  from '../../core/services/router.service';
 import { APP_LOCATIONS } from '../../config/constants';
+import { store } from '../../index';
+import { ACTIONS } from '../../core/store/actions';
 
 export class MainComponent extends BaseComponent {
   constructor({container, }) {
@@ -18,6 +20,7 @@ export class MainComponent extends BaseComponent {
     const user = await this.authenticationService.getUser();
     if (user) {
       MainComponent.setPage(BoardsListComponent, APP_LOCATIONS.BOARDS);
+      store.dispatch({type: ACTIONS.USER_LOGIN, data: user, })
     } else {
       MainComponent.setPage(AuthenticationComponent, APP_LOCATIONS.AUTH);
     }

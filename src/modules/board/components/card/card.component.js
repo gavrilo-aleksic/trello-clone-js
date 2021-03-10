@@ -11,6 +11,7 @@ export class CardComponent extends BaseComponent {
   constructor({ container, props, }) {
     super({ container, htmlContent, });
     this.card = props.card;
+    this.list = props.list;
     this.trelloService = new TrelloService();
     this.init();
     this.setSubscribers();
@@ -25,6 +26,7 @@ export class CardComponent extends BaseComponent {
       const cardDetailsElement = new CardDetailsComponent({
         props: {
           card: cardDetails,
+          list: this.list,
         },
       });
       ModalComponent.show({
