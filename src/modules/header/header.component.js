@@ -1,3 +1,4 @@
+import { COLORS } from '../../config/colors';
 import { APP_LOCATIONS } from "../../config/constants";
 import { BaseComponent } from "../../core/components/base.component";
 import { AuthenticationService } from "../../core/services/authentication.service";
@@ -18,7 +19,8 @@ export class HeaderComponent extends BaseComponent {
     const logoutWrapper = document.querySelector(".logout-button");
     this.logoutButton = new ButtonComponent({
       props: {
-        label: "logout",
+        color: COLORS.SKY,
+        label: "Logout",
         onClicked: () => this.logout(),
       },
     });

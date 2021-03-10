@@ -19,7 +19,7 @@ export class AuthenticationComponent extends BaseComponent {
       container: submitButton,
       props: {
         label: "Login",
-        color: COLORS.PRIMARY,
+        color: COLORS.GREEN,
         onClicked: (e) => this.login(),
       },
     });

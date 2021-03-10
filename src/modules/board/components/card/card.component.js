@@ -19,6 +19,8 @@ export class CardComponent extends BaseComponent {
 
   init() {
     this.cardNameElement = this.container.querySelector(".card-name");
+    this.cardActivityNumberElement = this.container.querySelector('.card-activity-number');
+    console.log(this.card)
     this.container.card = this.card;
     this.cardNameElement.innerText = this.card.name;
     this.container.addEventListener("click", async (e) => {
