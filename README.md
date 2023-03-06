@@ -1,6 +1,6 @@
 # Trello Clone App
 
-## Application is built on vanilla JS with the help of Webpack building tools. 
+Clone of [Trello](https://trello.com/) application using [Trello Api](https://developer.atlassian.com/cloud/trello/rest/). Application is built on pure JS with the help of Webpack building tools for TS compilation. 
 
 ### For running project locally, create .env.dev file with following keys:
 
